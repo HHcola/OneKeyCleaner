@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 public class BaseActivity extends FragmentActivity {
 
     protected LayoutInflater mInflater;
-    protected Handler mHandler;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -21,13 +20,11 @@ public class BaseActivity extends FragmentActivity {
 		
 		InitParams();
 		Utils.strategyUi(this,1);
-		setContentView(R.layout.activity_base);
-		
+		setContentView(R.layout.activity_base);	
 	}
 	
 	private void InitParams() {
 		mInflater = getLayoutInflater();
-		mHandler = new Handler();
 		
 	}
 	
