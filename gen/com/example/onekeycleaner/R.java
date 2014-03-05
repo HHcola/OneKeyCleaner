@@ -342,30 +342,49 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
          */
         public static final int activity_horizontal_margin=0x7f040000;
         public static final int activity_vertical_margin=0x7f040001;
+        public static final int title_height=0x7f040002;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
-        public static final int vpi__tab_indicator=0x7f020001;
-        public static final int vpi__tab_selected_focused_holo=0x7f020002;
-        public static final int vpi__tab_selected_holo=0x7f020003;
-        public static final int vpi__tab_selected_pressed_holo=0x7f020004;
-        public static final int vpi__tab_unselected_focused_holo=0x7f020005;
-        public static final int vpi__tab_unselected_holo=0x7f020006;
-        public static final int vpi__tab_unselected_pressed_holo=0x7f020007;
+        public static final int abc_ic_search=0x7f020000;
+        public static final int abc_ic_search_api_holo_light=0x7f020001;
+        public static final int app_panel_add_icon=0x7f020002;
+        public static final int banner_filter_normal=0x7f020003;
+        public static final int banner_filter_press=0x7f020004;
+        public static final int btn_banner_filter=0x7f020005;
+        public static final int btn_banner_search=0x7f020006;
+        public static final int ic_launcher=0x7f020007;
+        public static final int imageview_title_back=0x7f020008;
+        public static final int vpi__tab_indicator=0x7f020009;
+        public static final int vpi__tab_selected_focused_holo=0x7f02000a;
+        public static final int vpi__tab_selected_holo=0x7f02000b;
+        public static final int vpi__tab_selected_pressed_holo=0x7f02000c;
+        public static final int vpi__tab_unselected_focused_holo=0x7f02000d;
+        public static final int vpi__tab_unselected_holo=0x7f02000e;
+        public static final int vpi__tab_unselected_pressed_holo=0x7f02000f;
     }
     public static final class id {
-        public static final int action_settings=0x7f070008;
+        public static final int action_settings=0x7f07000f;
+        public static final int activity_view_title=0x7f070008;
         public static final int beginning=0x7f070001;
         public static final int bottom=0x7f070006;
         public static final int end=0x7f070003;
+        public static final int indicator=0x7f070009;
         public static final int middle=0x7f070002;
         public static final int none=0x7f070000;
+        public static final int pager=0x7f07000a;
+        public static final int title_add=0x7f07000d;
+        public static final int title_main_layout=0x7f07000b;
+        public static final int title_more=0x7f07000e;
+        public static final int title_search=0x7f07000c;
         public static final int top=0x7f070007;
         public static final int triangle=0x7f070004;
         public static final int underline=0x7f070005;
     }
     public static final class layout {
-        public static final int activity_cleaner=0x7f030000;
+        public static final int activity_base=0x7f030000;
+        public static final int activity_cleaner=0x7f030001;
+        public static final int activity_maintab=0x7f030002;
+        public static final int base_view_title=0x7f030003;
     }
     public static final class menu {
         public static final int cleaner=0x7f090000;
