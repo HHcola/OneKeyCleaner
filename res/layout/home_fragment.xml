@@ -38,7 +38,9 @@
     <LinearLayout
         android:layout_width="30dip"
         android:layout_height="match_parent"
-        android:orientation="horizontal""
+        android:orientation="horizontal">
+        <ImageView 
+            />
     </LinearLayout>
     
     <LinearLayout
