@@ -4,7 +4,13 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-   <my.example.onekeycleaner.pageindicator
+   <include 
+       android:id="@+id/activity_view_title"
+       layout="@layout/base_view_title"/>  
+       
+       
+       
+    <my.example.onekeycleaner.pageindicator.TabPageIndicator
         android:id="@+id/indicator"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />

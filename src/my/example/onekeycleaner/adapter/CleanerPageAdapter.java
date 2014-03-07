@@ -7,27 +7,33 @@
  */
 package my.example.onekeycleaner.adapter;
 
+import java.util.List;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 public class CleanerPageAdapter extends FragmentPagerAdapter {
 
-	public CleanerPageAdapter(FragmentManager fm) {
-		super(fm);
-		// TODO Auto-generated constructor stub
-	}
-
+	private List<Fragment> fragments; 
+    public CleanerPageAdapter(FragmentManager fm) {  
+        super(fm);  
+    }  
+      
+    public CleanerPageAdapter(FragmentManager fm, List<Fragment> fragments) {  
+        super(fm);  
+        this.fragments = fragments;  
+    }  
 	@Override
-	public Fragment getItem(int arg0) {
+	public Fragment getItem(int position) {
 		// TODO Auto-generated method stub
-		return null;
+		return fragments.get(position);
 	}
 
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return 0;
+		return fragments.size();
 	}
 	
 }

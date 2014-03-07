@@ -33,6 +33,7 @@ public class CleanerActivity extends BaseActivity {
 		Intent intent = new Intent(CleanerActivity.this,CleanerMainTabActivity.class);
 		intent.putExtra(startMainTab, flag);
 		startActivity(intent);
+		finish();
 	}
 
 	private Handler mHandler = new Handler() {

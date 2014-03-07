@@ -1,10 +1,15 @@
 package my.example.onekeycleaner.ui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.example.onekeycleaner.R;
 
 import my.example.onekeycleaner.adapter.CleanerPageAdapter;
+import my.example.onekeycleaner.fragment.HomeFragment;
 import my.example.onekeycleaner.pageindicator.TabPageIndicator;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
@@ -24,7 +29,12 @@ public class CleanerMainTabActivity extends BaseActivity implements OnClickListe
 		// TODO
 		setContentView(R.layout.activity_maintab);
 		mViewPager = (ViewPager)findViewById(R.id.pager);
-		mPageAdapter = new CleanerPageAdapter(getSupportFragmentManager());
+		
+		// 	Add Fragment To Adapter
+        List<Fragment> fragments = new ArrayList<Fragment>();  
+        fragments.add(new HomeFragment());  
+        
+		mPageAdapter = new CleanerPageAdapter(getSupportFragmentManager(),fragments);
 		mViewPager.setAdapter(mPageAdapter);
 		
         TabPageIndicator indicator = (TabPageIndicator)findViewById(R.id.indicator);

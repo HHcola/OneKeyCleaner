@@ -24,7 +24,7 @@
         </activity>
         
         <activity 
-            android:name="my.example.onekeycleaner.CleanerMainTabActivity"
+            android:name="my.example.onekeycleaner.ui.CleanerMainTabActivity"
             android:screenOrientation="portrait">
         </activity>
     </application>
