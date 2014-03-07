@@ -1,74 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_background"
-    android:orientation="vertical" >
+    android:background="@drawable/main_background" 
+    android:orientation="vertical">
  
-
-    <Relationlayout
-            android:layout_width="match_parent"
-   			android:layout_height="match_parent"
-        >
+    
+    <RelativeLayout
+            android:layout_width="fill_parent"
+   			android:layout_height="wrap_content"
+   			android:layout_alignParentBottom="true"
+      	    android:layout_centerHorizontal="true"
+      	    android:layout_marginBottom="184dp"
+   			android:gravity="center" >
+   			
         <ImageView
+            android:id="@+id/water_image"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" 
+            android:layout_height="wrap_content" 
             android:layout_gravity="center"
+            android:layout_alignParentTop="true"
+        	android:layout_centerHorizontal="true"
+        	android:layout_marginTop="74dp"
             android:contentDescription="@string/app_name"
             android:src="@drawable/btn_home_clearing"
             />
-        
         <ImageView
+            android:id="@+id/delete_image"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/water_image"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="66dp"
             android:contentDescription="@string/app_name"
             android:src="@drawable/btn_home_oneclear" />
-        <TextView 
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:text="@string/click_clear"
-            android:shadowColor="#ccddff"  
-       		android:shadowDx="20.0"  
-            android:shadowDy="10.0"  
-            android:shadowRadius="2.0" 
-            />
-    </Relationlayout>
+        <TextView
+            android:layout_width="40dip"
+            android:layout_height="20dip"
+            android:layout_below="@+id/delete_image"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:shadowColor="#ccddff"
+            android:shadowRadius="2.0"
+            android:text="@string/click_clear" />
+</RelativeLayout>
+    
+    
     <LinearLayout
-        android:layout_width="30dip"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-        
-        <TextView 
+        android:layout_width="140dip"
+        android:layout_height="20dip"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="94dp"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal" >
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:text="@string/click_clear"
-            android:shadowColor="#ccddff"  
-       		android:shadowDx="20.0"  
-            android:shadowDy="10.0"  
-            android:shadowRadius="2.0" 
-            android:drawableRight="@drawable/btn_home_clearstate"
+            android:shadowColor="#ccddff"
+            android:shadowRadius="2.0"
+            android:drawableLeft="@drawable/btn_home_clearstate"
+            android:drawablePadding="5dip"
+            android:text="@string/consume_memory" 
             />
     </LinearLayout>
-    
-    
+
     <LinearLayout
-        android:layout_width="30dip"
-        android:layout_height="match_parent"
+        android:layout_width="140dip"
+        android:layout_height="20dip"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="114dp"
+        android:layout_centerHorizontal="true"
         android:orientation="horizontal" >
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:drawableLeft="@drawable/btn_home_clearstate"
+            android:drawablePadding="5dip"
             android:shadowColor="#ccddff"
-            android:shadowDx="20.0"
-            android:shadowDy="10.0"
             android:shadowRadius="2.0"
-            android:drawableRight="@drawable/btn_home_clearstate"
-            android:text="@string/click_clear" />
-
+            android:text="@string/cache_dump" />
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

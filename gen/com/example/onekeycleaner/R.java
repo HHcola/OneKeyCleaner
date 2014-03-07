@@ -510,10 +510,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int widget_garbage=0x7f0200a2;
     }
     public static final class id {
-        public static final int action_settings=0x7f07000f;
+        public static final int action_settings=0x7f070011;
         public static final int activity_view_title=0x7f070008;
         public static final int beginning=0x7f070001;
         public static final int bottom=0x7f070006;
+        public static final int delete_image=0x7f070010;
         public static final int end=0x7f070003;
         public static final int indicator=0x7f070009;
         public static final int middle=0x7f070002;
@@ -526,6 +527,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int top=0x7f070007;
         public static final int triangle=0x7f070004;
         public static final int underline=0x7f070005;
+        public static final int water_image=0x7f07000f;
     }
     public static final class layout {
         public static final int activity_base=0x7f030000;
@@ -540,7 +542,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     public static final class string {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
+        public static final int cache_dump=0x7f050004;
         public static final int click_clear=0x7f050003;
+        public static final int consume_memory=0x7f050005;
         public static final int hello_world=0x7f050002;
     }
     public static final class style {
