@@ -7,6 +7,7 @@ import com.example.onekeycleaner.R;
 
 import my.example.onekeycleaner.adapter.CleanerPageAdapter;
 import my.example.onekeycleaner.fragment.HomeFragment;
+import my.example.onekeycleaner.fragment.TrashCleanFragment;
 import my.example.onekeycleaner.pageindicator.TabPageIndicator;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -32,7 +33,8 @@ public class CleanerMainTabActivity extends BaseActivity implements OnClickListe
 		
 		// 	Add Fragment To Adapter
         List<Fragment> fragments = new ArrayList<Fragment>();  
-        fragments.add(new HomeFragment());  
+//        fragments.add(new HomeFragment(this)); 
+        fragments.add(new TrashCleanFragment(this));
         
 		mPageAdapter = new CleanerPageAdapter(getSupportFragmentManager(),fragments);
 		mViewPager.setAdapter(mPageAdapter);

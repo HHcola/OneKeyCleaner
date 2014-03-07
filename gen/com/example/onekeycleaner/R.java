@@ -510,7 +510,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int widget_garbage=0x7f0200a2;
     }
     public static final class id {
-        public static final int action_settings=0x7f070011;
+        public static final int action_settings=0x7f070014;
         public static final int activity_view_title=0x7f070008;
         public static final int beginning=0x7f070001;
         public static final int bottom=0x7f070006;
@@ -525,6 +525,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int title_more=0x7f07000e;
         public static final int title_search=0x7f07000c;
         public static final int top=0x7f070007;
+        public static final int trash_list_image=0x7f070011;
+        public static final int trash_list_right_image=0x7f070013;
+        public static final int trash_list_text=0x7f070012;
         public static final int triangle=0x7f070004;
         public static final int underline=0x7f070005;
         public static final int water_image=0x7f07000f;
@@ -535,6 +538,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int activity_maintab=0x7f030002;
         public static final int base_view_title=0x7f030003;
         public static final int home_fragment=0x7f030004;
+        public static final int trash_clear_fragment=0x7f030005;
+        public static final int trash_list_item=0x7f030006;
     }
     public static final class menu {
         public static final int cleaner=0x7f090000;

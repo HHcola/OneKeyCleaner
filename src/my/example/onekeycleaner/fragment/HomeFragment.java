@@ -2,6 +2,7 @@ package my.example.onekeycleaner.fragment;
 
 import com.example.onekeycleaner.R;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,9 @@ import android.view.ViewGroup;
 
 public class HomeFragment extends BaseFragment {
 
+	public HomeFragment(Context mContent) {
+		this.mContent = mContent;
+	}
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);	    
