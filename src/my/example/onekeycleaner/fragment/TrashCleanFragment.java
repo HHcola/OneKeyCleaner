@@ -48,18 +48,18 @@ public class TrashCleanFragment extends ListFragment {
 	private List<Map<String, Object>> getData() {
 		List<Map<String, Object>> mylist = new ArrayList<Map<String, Object>>();
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("title", "G1");
+		map.put("title", "app cache clear");
 		map.put("img", R.drawable.trash_group_cache);
 		mylist.add(map);
 		
 		map = new HashMap<String, Object>();
-		map.put("title", "G2");
+		map.put("title", "install package clear");
 		map.put("img", R.drawable.trash_group_apk);
 		mylist.add(map);
 		
 		
 		map = new HashMap<String, Object>();
-		map.put("title", "G3");
+		map.put("title", "remain files clear");
 		map.put("img", R.drawable.trash_group_file);
 		mylist.add(map);
 		

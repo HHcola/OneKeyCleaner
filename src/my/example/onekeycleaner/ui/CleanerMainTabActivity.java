@@ -33,7 +33,7 @@ public class CleanerMainTabActivity extends BaseActivity implements OnClickListe
 		
 		// 	Add Fragment To Adapter
         List<Fragment> fragments = new ArrayList<Fragment>();  
-//        fragments.add(new HomeFragment(this)); 
+        fragments.add(new HomeFragment(this)); 
         fragments.add(new TrashCleanFragment(this));
         
 		mPageAdapter = new CleanerPageAdapter(getSupportFragmentManager(),fragments);

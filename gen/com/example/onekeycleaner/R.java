@@ -510,7 +510,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int widget_garbage=0x7f0200a2;
     }
     public static final class id {
-        public static final int action_settings=0x7f070014;
+        public static final int action_settings=0x7f070017;
         public static final int activity_view_title=0x7f070008;
         public static final int beginning=0x7f070001;
         public static final int bottom=0x7f070006;
@@ -520,14 +520,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int middle=0x7f070002;
         public static final int none=0x7f070000;
         public static final int pager=0x7f07000a;
+        public static final int scan_dump_image=0x7f070013;
+        public static final int scan_dump_total=0x7f070012;
+        public static final int scan_text=0x7f070011;
         public static final int title_add=0x7f07000d;
         public static final int title_main_layout=0x7f07000b;
         public static final int title_more=0x7f07000e;
         public static final int title_search=0x7f07000c;
         public static final int top=0x7f070007;
-        public static final int trash_list_image=0x7f070011;
-        public static final int trash_list_right_image=0x7f070013;
-        public static final int trash_list_text=0x7f070012;
+        public static final int trash_list_image=0x7f070014;
+        public static final int trash_list_right_text=0x7f070016;
+        public static final int trash_list_text=0x7f070015;
         public static final int triangle=0x7f070004;
         public static final int underline=0x7f070005;
         public static final int water_image=0x7f07000f;
@@ -546,11 +549,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
+        public static final int app_cache_clear=0x7f050006;
         public static final int app_name=0x7f050000;
         public static final int cache_dump=0x7f050004;
         public static final int click_clear=0x7f050003;
         public static final int consume_memory=0x7f050005;
         public static final int hello_world=0x7f050002;
+        public static final int install_package_clear=0x7f050007;
+        public static final int remain_files_clear=0x7f050008;
+        public static final int scan_string_text=0x7f050009;
     }
     public static final class style {
         /** 
