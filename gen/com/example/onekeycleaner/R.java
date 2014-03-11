@@ -603,8 +603,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int activity_maintab=0x7f030002;
         public static final int base_view_title=0x7f030003;
         public static final int home_fragment=0x7f030004;
-        public static final int trash_clear_fragment=0x7f030005;
-        public static final int trash_list_item=0x7f030006;
+        public static final int installpackage_manager_fragment=0x7f030005;
+        public static final int memory_acceleration_fragment=0x7f030006;
+        public static final int privacy_clear_fragment=0x7f030007;
+        public static final int trash_clear_fragment=0x7f030008;
+        public static final int trash_list_item=0x7f030009;
     }
     public static final class menu {
         public static final int cleaner=0x7f0c0000;
