@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2011 Patrik Akerfeldt
  * Copyright (C) 2011 Jake Wharton
  *
@@ -14,7 +14,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package my.example.onekeycleaner.pageindicator;
+
+
 import android.support.v4.view.ViewPager;
 
 /**

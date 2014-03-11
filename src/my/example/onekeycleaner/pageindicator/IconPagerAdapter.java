@@ -1,6 +1,4 @@
 package my.example.onekeycleaner.pageindicator;
-
-
 public interface IconPagerAdapter {
     /**
      * Get icon representing the page at {@code index} in the adapter.

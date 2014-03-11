@@ -11,5 +11,17 @@
     <string name="install_package_clear">install package clear</string>
     <string name="remain_files_clear">remain files clear</string>
     <string name="scan_string_text">Scan End,Dump Total</string>
-	
+
+    
+	<string-array name="channel_names">
+        <item>焦点报道</item>
+        <item>国际/港台</item>
+        <item>内地</item>
+        <item>财经</item>
+        <item>科技</item>
+        <item>体育</item>
+        <item>娱乐</item>
+        <item>健康</item>
+        <item>热门报道</item>
+    </string-array>	
 </resources>

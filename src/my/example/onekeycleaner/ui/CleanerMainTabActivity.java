@@ -1,16 +1,11 @@
 package my.example.onekeycleaner.ui;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.example.onekeycleaner.R;
 
 import my.example.onekeycleaner.adapter.CleanerPageAdapter;
-import my.example.onekeycleaner.fragment.HomeFragment;
-import my.example.onekeycleaner.fragment.TrashCleanFragment;
 import my.example.onekeycleaner.pageindicator.TabPageIndicator;
+import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
@@ -31,12 +26,9 @@ public class CleanerMainTabActivity extends BaseActivity implements OnClickListe
 		setContentView(R.layout.activity_maintab);
 		mViewPager = (ViewPager)findViewById(R.id.pager);
 		
-		// 	Add Fragment To Adapter
-        List<Fragment> fragments = new ArrayList<Fragment>();  
-        fragments.add(new HomeFragment(this)); 
-        fragments.add(new TrashCleanFragment(this));
-        
-		mPageAdapter = new CleanerPageAdapter(getSupportFragmentManager(),fragments);
+  
+        Resources res = getResources();
+		mPageAdapter = new CleanerPageAdapter(this,getSupportFragmentManager(),res.getStringArray(R.array.channel_names));
 		mViewPager.setAdapter(mPageAdapter);
 		
         TabPageIndicator indicator = (TabPageIndicator)findViewById(R.id.indicator);
@@ -82,7 +74,24 @@ public class CleanerMainTabActivity extends BaseActivity implements OnClickListe
 		@Override
 		public void onPageScrollStateChanged(int state) {
 			// TODO Auto-generated method stub
-			
+//			Log.v(TAG, "ViewPager onPageScrollStateChanged == state = "+state+" -- mPageIndex = "+mPageIndex);
+//			switch (state) {
+//				case ViewPager.SCROLL_STATE_IDLE://换页结束
+//					int currentIndex = mViewPager.getCurrentItem();
+//					Log.v("zhang", "ViewPager onPageScrollStateChanged == currentIndex "+currentIndex+"-- mPageIndex = "+mPageIndex);
+//					if(currentIndex !=  mPageIndex) {
+//						mPageIndex = currentIndex;
+////						mPageAdapter.getItem(currentIndex).changePage2Refresh(false);
+//					}
+//					break;
+//				case ViewPager.SCROLL_STATE_DRAGGING://换页开始
+//					mPageIndex = mViewPager.getCurrentItem();
+//					break;
+//				case ViewPager.SCROLL_STATE_SETTLING:
+//					break;
+//				default:
+//					break;
+//			}
 		}
 		
 	};
