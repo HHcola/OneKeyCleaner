@@ -11,17 +11,13 @@
     <string name="install_package_clear">install package clear</string>
     <string name="remain_files_clear">remain files clear</string>
     <string name="scan_string_text">Scan End,Dump Total</string>
-
+	<string name="tool_box_title">Tool Box</string>
     
 	<string-array name="channel_names">
         <item>Home</item>
         <item>TrachClear</item>
         <item>PrivacyClear</item>
         <item>MemoryAcc</item>
-        <item>Installed</item>
-        <item>体育</item>
-        <item>娱乐</item>
-        <item>健康</item>
-        <item>热门报道</item>
+        <item>Tool Box</item>
     </string-array>	
 </resources>

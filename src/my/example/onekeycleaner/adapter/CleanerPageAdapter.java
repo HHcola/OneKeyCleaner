@@ -8,7 +8,7 @@
 package my.example.onekeycleaner.adapter;
 
 import my.example.onekeycleaner.fragment.HomeFragment;
-import my.example.onekeycleaner.fragment.InstallPackageManagerFragment;
+import my.example.onekeycleaner.fragment.ToolBoxFragment;
 import my.example.onekeycleaner.fragment.MemoryAccFragment;
 import my.example.onekeycleaner.fragment.PrivacyClearFragment;
 import my.example.onekeycleaner.fragment.TrashCleanFragment;
@@ -22,7 +22,7 @@ public class CleanerPageAdapter extends FragmentPagerAdapter {
 	private static final int TRASH_CLEAR_PAGE = 1;
 	private static final int PRIVACY_CLEAR_PAGE = 2;
 	private static final int MEMORY_ACC_PAGE = 3;
-	private static final int INSTALL_PACKAGE_MANAGER_PAGE = 4;
+	private static final int TOOL_BOX = 4;
 	private static final int  OTHER_PAGE = 5;
 	private static final int PAGE_NUM = 5;
 	private final String[] fChannelNames;
@@ -52,8 +52,8 @@ public class CleanerPageAdapter extends FragmentPagerAdapter {
 			case MEMORY_ACC_PAGE:
 				mFragments[position] = new MemoryAccFragment(mContent);
 				break;
-			case INSTALL_PACKAGE_MANAGER_PAGE:
-				mFragments[position] = new InstallPackageManagerFragment(mContent);
+			case TOOL_BOX:
+				mFragments[position] = new ToolBoxFragment(mContent);
 				break;
 			default:
 				mFragments[position] = new HomeFragment(mContent);
