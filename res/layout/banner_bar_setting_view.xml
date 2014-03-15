@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <my.example.onekeycleaner.widget.MarqueeTextView
+        android:id="@+id/tv_bar_setting_msg"
+        android:layout_width="18dip"
+        android:layout_height="18dip"
+        android:layout_gravity="top|right"
+        android:layout_marginRight="4dip"
+        android:layout_marginTop="4dip"
+        android:background="@drawable/download_msg_bg"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btn_bar_setting"
+        android:layout_width="30dip"
+        android:layout_height="30dip"
+        android:background="@drawable/btn_download_bg"
+        android:gravity="center" />
+
+</FrameLayout>

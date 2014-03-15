@@ -7,5 +7,6 @@
     <color name="news_summary_color">#9A9C9C</color>   
     <drawable name="white">#FFFFFF</drawable>
     <color name="tool_box_title_bk_color">#FFFFFF</color>
-    
+    <color name="color_all_bg">#ECECEC</color>
+    <color name="color_navigation_bar_bg">#E01F1E1E</color>
 </resources>

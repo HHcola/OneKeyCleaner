@@ -55,6 +55,13 @@
         <item name="android:typeface">monospace</item>
     </style>
     
+    
+    <style name="style_bar_text">
+        <item name="android:textSize">19sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+    
     <style name="CustomUnderlinePageIndicator">
         <item name="selectedColor">#FFCC0000</item>
         <item name="android:background">#FFCCCCCC</item>

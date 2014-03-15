@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<my.example.onekeycleaner.widget.NavigationBar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_navigation_bar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dime_navigation_bar_height"
+    android:background="@color/color_navigation_bar_bg"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="5dip" >
+
+
+   <FrameLayout
+        android:id="@+id/btn_bar_normal_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="3dip"
+        android:layout_weight="1" >
+        
+        <ViewStub
+            android:id="@+id/viewstub_normal_back"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout="@layout/banner_bar_back_view" >
+        </ViewStub>
+        
+        <ViewStub
+            android:id="@+id/viewstub_normal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout="@layout/banner_bar_view_title" >
+        </ViewStub>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/btn_bar_setting_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical" >
+
+       <ViewStub
+            android:id="@+id/viewstub_bar_tag_normal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout="@layout/banner_bar_setting_view" >
+        </ViewStub>
+      
+    </FrameLayout>
+
+</my.example.onekeycleaner.widget.NavigationBar>

@@ -3,10 +3,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
+
     <!-- Title -->
+	<!--
     <include
         android:id="@+id/activity_view_title"
         layout="@layout/base_view_title" />
-    
+
+     include
+        android:id="@+id/activity_view_title_back"
+        layout="@layout/base_view_back_title" /-->
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/navigation_bar_view" />
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_all_bg" >
+    </FrameLayout>
+
 </LinearLayout>

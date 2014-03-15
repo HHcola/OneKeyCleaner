@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/banner_bar_back_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+    <Button
+        android:id="@+id/btn_bar_back"
+        android:layout_width="36dip"
+        android:layout_height="40dip"
+        android:background="@drawable/btn_banner_title_back" />
+
+    <my.example.onekeycleaner.widget.MarqueeTextView
+        android:id="@+id/banner_tv_bar_back_title"
+        style="@style/style_bar_text"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:ellipsize="marquee"
+        android:gravity="center_vertical"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:maxEms="11"
+        android:paddingRight="7dip"
+        android:paddingLeft="7dip"
+        android:scrollHorizontally="true"
+        android:singleLine="true" />
+
+</LinearLayout>

@@ -4,6 +4,7 @@ import com.example.onekeycleaner.R;
 
 import my.example.onekeycleaner.adapter.CleanerPageAdapter;
 import my.example.onekeycleaner.pageindicator.TabPageIndicator;
+import my.example.onekeycleaner.widget.NavigationBar;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -23,10 +24,13 @@ public class CleanerMainTabActivity extends BaseActivity implements OnClickListe
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		// TODO
-		setContentView(R.layout.activity_maintab);
-		mViewPager = (ViewPager)findViewById(R.id.pager);
+		final View view = mInflater.inflate(R.layout.activity_maintab, null);
+		setBarType(NavigationBar.SHOW_NORMAL_BAR);
+		setBarTitle("OneKeyClearner");
+		addContentView(view);
 		
-  
+		// View Page
+		mViewPager = (ViewPager)findViewById(R.id.pager);
         Resources res = getResources();
 		mPageAdapter = new CleanerPageAdapter(this,getSupportFragmentManager(),res.getStringArray(R.array.channel_names));
 		mViewPager.setAdapter(mPageAdapter);
