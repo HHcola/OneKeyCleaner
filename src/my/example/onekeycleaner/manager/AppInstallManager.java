@@ -2,6 +2,7 @@ package my.example.onekeycleaner.manager;
 
 import java.io.File;
 import java.lang.reflect.Field;
+import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -86,6 +87,18 @@ public class AppInstallManager {
         return mInstallApps;
     }
 
+    
+    public int getUninstallableAppCount() {
+        int count = 0;
+        Collection<AppInstall> appInstalls = mInstallApps.values();
+        for (AppInstall appInstall : appInstalls) {
+            if (!appInstall.mIsSystemApp) {
+                count++;
+            }
+        }
+        return count;
+    }
+    
     /**
      * 
      * @return

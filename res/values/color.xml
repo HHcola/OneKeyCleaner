@@ -12,4 +12,6 @@
     <color name="color_panel_background">#EFFFFFFF</color>
     <color name="color_divider_line">#DCDCDC</color>
 	<color name="color_textview_text">#B6B6B6</color>
+	<color name="color_textview_bule_text">#008AFF</color>
+	<color name="color_textview_green_text">#3BAA24</color>
 </resources>

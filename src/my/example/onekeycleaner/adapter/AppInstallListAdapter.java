@@ -2,6 +2,7 @@ package my.example.onekeycleaner.adapter;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 import com.example.onekeycleaner.R;
@@ -31,39 +32,63 @@ public class AppInstallListAdapter extends ListBaseAdapter{
 	private InstallSortableList mInstallAppsList;
     private ArrayList<AppInstall> mAppInstallList;
     private HashMap<String, AppInstall> mSelectedAppList;
-    
-	
-	public AppInstallListAdapter(Context context, ListView listView) {
+
+	public AppInstallListAdapter(Context context, ListView listView,
+            OnItemActionListener listener, OnItemSelectedListener selectedListener) {
 		super(context, listView);
 		// TODO Auto-generated constructor stub
-		mSelectedAppList = new HashMap<String, AppInstall>();
-		mAppInstallManager = AppInstallManager.getInstance(context);
-        InstallMapList mapList;
-        mapList = new InstallMapList(mAppInstallManager.getInstalledAppList());
-        mInstallAppsList = new InstallSortableList(mapList);
+//		mSelectedAppList = new HashMap<String, AppInstall>();
+//		mAppInstallManager = AppInstallManager.getInstance(context);
+//        InstallMapList mapList;
+//        mapList = new InstallMapList(mAppInstallManager.getInstalledAppList());
+//        mInstallAppsList = new InstallSortableList(mapList);
+//        mAppInstallList = new ArrayList<AppInstall>();
+//        mAppInstallList = mInstallAppsList.getList();
+//        mInflater = LayoutInflater.from(context);
+        
+        mOnSelectedListener = selectedListener;
         mAppInstallList = new ArrayList<AppInstall>();
-        mAppInstallList = mInstallAppsList.getList();
-        mInflater = LayoutInflater.from(context);
+        mSelectedAppList = new HashMap<String, AppInstall>();
 	}
 
+    public void setInstallList(ArrayList<AppInstall> appInstalls) {
+        mAppInstallList = appInstalls;
+    }
+    public HashMap<String, AppInstall> getSelectedAppList() {
+        return mSelectedAppList;
+    }
+    
+    public void selectAll() {
+        for (AppInstall install : mAppInstallList) {
+            if (!install.isSystemApp()) {
+                install.setChecked(true);
+                mSelectedAppList.put(install.mAppKey, install);
+            }
+        }
+    }
+    
+    public void clearSelection() {
+        Collection<AppInstall> values = mSelectedAppList.values();
+        for (AppInstall install : values) {
+            install.setChecked(false);
+        }
+        mSelectedAppList.clear();
+    }
+    
+    @Override
+    public int getCount() {
+        return mAppInstallList.size();
+    }
 
-	@Override
-	public int getCount() {
-		// TODO Auto-generated method stub
-		return mAppInstallList.size();
-	}
+    @Override
+    public Object getItem(int position) {
+        return mAppInstallList.get(position);
+    }
 
-	@Override
-	public Object getItem(int position) {
-		// TODO Auto-generated method stub
-		return mAppInstallList.get(position);
-	}
-
-	@Override
-	public long getItemId(int position) {
-		// TODO Auto-generated method stub
-		return position;
-	}
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {

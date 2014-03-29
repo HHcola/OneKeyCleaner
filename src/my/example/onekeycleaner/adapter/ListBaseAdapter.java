@@ -89,5 +89,28 @@ public abstract class ListBaseAdapter extends BaseAdapter {
 
         abstract void setData(final Object object, final int position);
     }
+    
+    public View findViewWithData(Object data, View contextView) {
+        Object contextData = null;
+        if (contextView != null) {
+            contextData = contextView.getTag(ITEM_VIEW_TAG_KEY);
+        }
+        if (contextData != data) {
+            int count = mListView.getChildCount();
+            for (int i = 0; i < count; i++) {
+                View itemView = mListView.getChildAt(i);
+                Object viewData = itemView.getTag(ITEM_VIEW_TAG_KEY);
+                if (viewData != null) {
+                    if (viewData == data) {
+                        return itemView;
+                    }
+                }
+            }
+        } else {
+            return contextView;
+        }
+        return null;
+    }
+
 
 }
