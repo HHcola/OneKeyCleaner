@@ -9,4 +9,7 @@
     <dimen name="list_foot_view_height">8dp</dimen>
     <dimen name="web_view_title_height">48dp</dimen>
     <dimen name="dime_navigation_bar_height">30dip</dimen>
+    <dimen name="dimen_divider_line">0.5dip</dimen>
+    <dimen name="dimen_padding_bottom">65dip</dimen>
+    <dimen name="dimen_app_icon_size">60dip</dimen>
 </resources>

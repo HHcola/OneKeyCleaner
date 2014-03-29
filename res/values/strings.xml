@@ -13,6 +13,22 @@
     <string name="scan_string_text">Scan End,Dump Total</string>
 	<string name="tool_box_title">Tool Box</string>
     
+	
+	    
+    <string name="toast_cannot_open_app">"cannot open app"</string>
+    <string name="toast_cannot_open_app_detail">"cannot open app detail"</string>
+    <string name="toast_delete_install_package">"delete"</string>
+    <string name="toast_package_isnot_exist">"install package is not exist!"</string>
+    <string name="toast_network_failure">Network connection failure</string>
+    <string name="str_try_best">Try our best to load the APP</string>
+    <string name="tab_action_uninstall">"Uninstall"</string>
+    <string name="tab_action_select_all">"Seletet All"</string>
+    <string name="tab_action_unselect_all">"Unseletet All"</string>
+	<string name="str_system_app">" System app"</string>    
+	<string name="app_version_text">"Version: "</string>
+	<string name="lastest_app_version_text">"Lastest Version: "</string>
+    <string name="app_size_text">"Size: "</string>
+    <string name="app_new_size_text">"New Size: "</string>
 	<string-array name="channel_names">
         <item>Home</item>
         <item>TrachClear</item>

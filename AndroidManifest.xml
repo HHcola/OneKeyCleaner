@@ -31,6 +31,9 @@
             android:screenOrientation="portrait"
             android:theme="@style/StyledIndicators" >
         </activity>
+        <activity 
+            android:name="my.example.onekeycleaner.ui.AppInstallManagerActivity" >
+        </activity>
     </application>
 
 </manifest>

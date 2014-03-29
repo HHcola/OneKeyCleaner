@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.baidu.androidstore.widget.ActionMoreItemView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants" >
+
+    <LinearLayout
+        android:id="@+id/action_more_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_main_item_view"
+        android:layout_marginTop="-2dip"
+        android:orientation="horizontal"
+        android:paddingLeft="2dip"
+        android:paddingRight="2dip"
+        android:visibility="visible" >
+
+        <ImageButton
+            android:id="@+id/action_more_first"
+            android:layout_width="0dip"
+            android:layout_height="42dip"
+            android:layout_weight="1"
+            android:background="@drawable/btn_download_action_more"
+            android:contentDescription="@string/app_name"
+            android:paddingBottom="11dip"
+            android:paddingTop="11dip"
+            android:scaleType="centerInside"
+            android:src="@drawable/btn_detail_action" />
+
+        <ImageButton
+            android:id="@+id/action_more_second"
+            android:layout_width="0dip"
+            android:layout_height="42dip"
+            android:layout_weight="1"
+            android:background="@drawable/btn_download_action_more"
+            android:contentDescription="@string/app_name"
+            android:paddingBottom="11dip"
+            android:paddingTop="11dip"
+            android:scaleType="centerInside"
+            android:src="@drawable/btn_delete_action" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/app_main_item_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </RelativeLayout>
+
+</com.baidu.androidstore.widget.ActionMoreItemView>

@@ -72,30 +72,11 @@ public class CleanerMainTabActivity extends BaseActivity implements OnClickListe
 				}
 			}
 			Log.v(TAG, "ViewPager onPageScrolled == index = "+index);
-//			mPageAdapter.getItem(index).check2UpdateListView();
 		}
 		
 		@Override
 		public void onPageScrollStateChanged(int state) {
 			// TODO Auto-generated method stub
-//			Log.v(TAG, "ViewPager onPageScrollStateChanged == state = "+state+" -- mPageIndex = "+mPageIndex);
-//			switch (state) {
-//				case ViewPager.SCROLL_STATE_IDLE://换页结束
-//					int currentIndex = mViewPager.getCurrentItem();
-//					Log.v("zhang", "ViewPager onPageScrollStateChanged == currentIndex "+currentIndex+"-- mPageIndex = "+mPageIndex);
-//					if(currentIndex !=  mPageIndex) {
-//						mPageIndex = currentIndex;
-////						mPageAdapter.getItem(currentIndex).changePage2Refresh(false);
-//					}
-//					break;
-//				case ViewPager.SCROLL_STATE_DRAGGING://换页开始
-//					mPageIndex = mViewPager.getCurrentItem();
-//					break;
-//				case ViewPager.SCROLL_STATE_SETTLING:
-//					break;
-//				default:
-//					break;
-//			}
 		}
 		
 	};

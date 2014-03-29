@@ -5,9 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import my.example.onekeycleaner.ui.AppInstallManagerActivity;
+
 import com.example.onekeycleaner.R;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
@@ -69,15 +73,13 @@ public class TrashCleanFragment extends ListFragment {
 	@Override  
     public void onListItemClick(ListView listview, View v, int position, long id) {  
         super.onListItemClick(listview, v, position, id);  
-          
-        System.out.println(listview.getChildAt(position));  
+           
         HashMap<String, Object> view= (HashMap<String, Object>) listview.getItemAtPosition(position);  
-        System.out.println(view.get("title").toString()+"+++++++++title");  
-  
-        Toast.makeText(getActivity(), TAG+listview.getItemIdAtPosition(position), Toast.LENGTH_LONG).show();  
-        System.out.println(v);  
-          
-        System.out.println(position);  
+        if(view.get("title") == "install package clear") {
+        	//Open install activity
+        	Intent intent = new Intent(mContent,AppInstallManagerActivity.class);
+        	startActivity(intent);
+        }
           
           
     }  

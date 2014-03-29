@@ -9,4 +9,7 @@
     <color name="tool_box_title_bk_color">#FFFFFF</color>
     <color name="color_all_bg">#ECECEC</color>
     <color name="color_navigation_bar_bg">#E01F1E1E</color>
+    <color name="color_panel_background">#EFFFFFFF</color>
+    <color name="color_divider_line">#DCDCDC</color>
+	<color name="color_textview_text">#B6B6B6</color>
 </resources>
