@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 public abstract class ListBaseAdapter extends BaseAdapter {
 
+	public static final int ITEM_VIEW_TAG_KEY = R.id.app_main_item_view;
     public static final int ITEM_ACTION_UNKOWN = -1;
     public static final int ITEM_ACTION_PAUSE = 0;
     public static final int ITEM_ACTION_RESUME = 1;
@@ -29,6 +30,8 @@ public abstract class ListBaseAdapter extends BaseAdapter {
     protected LayoutInflater mLayoutInflater;
     protected OnItemActionListener mOnActionListener;
     protected OnItemSelectedListener mOnSelectedListener;
+    
+    protected int padding;
     
     public ListBaseAdapter(Context context, ListView listView) {
         mContext = context;
