@@ -36,6 +36,7 @@ public class AppInstallListAdapter extends ListBaseAdapter{
 	public AppInstallListAdapter(Context context, ListView listView) {
 		super(context, listView);
 		// TODO Auto-generated constructor stub
+		mSelectedAppList = new HashMap<String, AppInstall>();
 		mAppInstallManager = AppInstallManager.getInstance(context);
         InstallMapList mapList;
         mapList = new InstallMapList(mAppInstallManager.getInstalledAppList());
@@ -134,8 +135,8 @@ public class AppInstallListAdapter extends ListBaseAdapter{
 	            mInfoContainerHolder = view.findViewById(R.id.app_info_container);
 	            mActionMoreHolder = view.findViewById(R.id.action_more_layout);
 
-//	            ActionMoreItemView actionMoreItemView = (ActionMoreItemView) mItemView;
-//	            actionMoreItemView.setOneMoreAction(R.drawable.btn_delete_action);
+	            ActionMoreItemView actionMoreItemView = (ActionMoreItemView) mItemView;
+	            actionMoreItemView.setOneMoreAction(R.drawable.btn_delete_action);
 	        }
 
 	        /**
