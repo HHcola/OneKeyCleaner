@@ -1,6 +1,7 @@
 package my.example.onekeycleaner.engine;
 
 import java.lang.reflect.Method;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Vector;
@@ -180,4 +181,23 @@ public class CacheInfoProvider
         return mCacheInfos;
     }
 
+    /**
+     * 
+     * @return
+     */
+    public CacheInfo getInstalledApp(String appKey) {
+        return mCacheInfos.get(appKey);
+    }
+    
+    public int getAppCacheClearCount() {
+        int count = 0;
+        Collection<CacheInfo> appInstalls = mCacheInfos.values();
+        for (CacheInfo appInstall : appInstalls) {
+            if (!appInstall.mIsSystemApp) {
+                count++;
+            }
+        }
+        return count;
+    }
+    
 }

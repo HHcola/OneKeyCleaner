@@ -48,7 +48,6 @@ OnItemActionListener, OnItemSelectedListener{
 	private static final int LOADING = 0;
 	private static final int FINISH = 1;
 
-    private AppInstallManager mAppInstallManager;
     private AppStateManager mAppStateManager;
     private CheckBox mActionChecked;
     private AppCacheClearAdapter mInstallCacheListAdapter;
@@ -65,15 +64,6 @@ OnItemActionListener, OnItemSelectedListener{
 		// TODO Auto-generated constructor stub
 			mInstallCacheListAdapter = (AppCacheClearAdapter) mAdapter;
 
-	        mAppInstallManager = AppInstallManager.getInstance(context);
-	        mAppStateManager = AppStateManager.getInstance(context);
-	        AppStateFilter stateFilter = new AppStateFilter();
-	        // 注册关心状态
-	        stateFilter.listenState(AppState.INSTALLED, AppState.UNINSTALLED,
-	                AppState.UPDATED);
-	        mAppStateManager.registerAppStateChangeListener(mStateChangeListener,
-	                stateFilter);
-
 	        mCachaInfoProvider = new CacheInfoProvider(handler, context);
 	        mActionChecked = (CheckBox) mRoot.findViewById(R.id.action_all_checked);
 	        mActionChecked.setVisibility(View.VISIBLE);
@@ -83,8 +73,6 @@ OnItemActionListener, OnItemSelectedListener{
 	        mActionButton.setText(R.string.tab_action_clearner);
 
 	        loadData();
-//	        updateListViewData(true);
-	        
 	        mListView.setOnTouchListener(new OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
@@ -165,7 +153,7 @@ OnItemActionListener, OnItemSelectedListener{
             ArrayList<String> toRemoves = new ArrayList<String>();
             for (CacheInfo installcache : installs) {
                 String appKey = installcache.packageName;
-                if (mAppInstallManager.getInstalledApp(appKey) == null) {
+                if (mCachaInfoProvider.getInstalledApp(appKey) == null) {
                     toRemoves.add(appKey);
                 }
             }
@@ -320,7 +308,7 @@ OnItemActionListener, OnItemSelectedListener{
         if (mActionMoreContext != null) {
             String appKey = mActionMoreContext.data.mAppKey;
             if (!TextUtils.isEmpty(appKey)
-                    && mAppInstallManager.getInstalledApp(appKey) != null) {
+                    && mCachaInfoProvider.getInstalledApp(appKey) != null) {
                 return true;
             }
         }
@@ -416,7 +404,7 @@ OnItemActionListener, OnItemSelectedListener{
     @Override
     public void onItemSelected(Object object, int count) {
         updateTabActionInfo(count,
-                mAppInstallManager.getUninstallableAppCount());
+        		mCachaInfoProvider.getAppCacheClearCount());
     }
     
     /**

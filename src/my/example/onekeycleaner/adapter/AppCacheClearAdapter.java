@@ -189,6 +189,47 @@ public class AppCacheClearAdapter extends ListBaseAdapter{
 			mAppNameHolder.setText(installcache.packageName);
 			mAppVersionHolder.setText(installcache.name);
 			mAppSizeHolder.setText(installcache.cacheSize);
+			
+			
+			mActionButtonHolder.setImageResource(installcache.isSystemApp() ?
+                    R.drawable.btn_open_bg : R.drawable.btn_uninstall_bg);
+            mActionButtonHolder.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int action = installcache.isSystemApp() ?
+                            ITEM_ACTION_OPEN : ITEM_ACTION_UNINSTALL;
+                    mOnActionListener.onItemAction(mItemView, position, action, installcache);
+                }
+            });
+
+            if (installcache.mInstallFlag == CacheInfo.FLAG_INSTALL_AUTO_SDCARD
+                    || installcache.mInstallFlag == CacheInfo.FLAG_INSTALL_AUTO_ROM) {
+                mActionMoveHolder.setImageResource(R.drawable.btn_move_app);
+                mActionMoveHolder.setEnabled(true);
+            } else {
+                mActionMoveHolder.setImageResource(R.drawable.btn_move_app_disable);
+                mActionMoveHolder.setEnabled(false);
+            }
+            mActionMoveHolder.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (installcache.mInstallFlag == CacheInfo.FLAG_INSTALL_AUTO_SDCARD) {
+                        mOnActionListener.onItemAction(mItemView,
+                                position, ITEM_ACTION_MOVE_ROM, installcache);
+                    } else if (installcache.mInstallFlag == CacheInfo.FLAG_INSTALL_AUTO_ROM) {
+                        mOnActionListener.onItemAction(mItemView,
+                                position, ITEM_ACTION_MOVE_SDCARD, installcache);
+                    }
+                }
+            });
+
+            if (installcache.isActionMore()) {
+                mActionMoreHolder.setVisibility(View.VISIBLE);
+                mIndicatorHolder.setImageResource(R.drawable.action_more_indicator_up);
+            } else {
+                mActionMoreHolder.setVisibility(View.GONE);
+                mIndicatorHolder.setImageResource(R.drawable.action_more_indicator_down);
+            }
 		}
 	}
 
