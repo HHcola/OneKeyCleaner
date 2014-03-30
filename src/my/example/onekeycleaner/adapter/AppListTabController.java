@@ -83,7 +83,7 @@ public abstract class AppListTabController implements OnClickListener,
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-
+        onTabActionClick(v);
 	}
 
 }
