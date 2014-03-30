@@ -5,7 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import my.example.onekeycleaner.ui.AppInstallManagerActivity;
+import my.example.onekeycleaner.ui.AppCacheClearPageActivity;
+import my.example.onekeycleaner.ui.BaseActivity;
 
 import com.example.onekeycleaner.R;
 
@@ -73,11 +74,17 @@ public class TrashCleanFragment extends ListFragment {
 	@Override  
     public void onListItemClick(ListView listview, View v, int position, long id) {  
         super.onListItemClick(listview, v, position, id);  
-           
+          
         HashMap<String, Object> view= (HashMap<String, Object>) listview.getItemAtPosition(position);  
-        if(view.get("title") == "install package clear") {
+        String title = (String) view.get("title");
+        if(title == "install package clear") {
         	//Open install activity
-        	Intent intent = new Intent(mContent,AppInstallManagerActivity.class);
+        	Intent intent = new Intent(mContent,AppCacheClearPageActivity.class);
+        	intent.putExtra("type",BaseActivity.TAB_TYPE_INSTALLED);
+        	startActivity(intent);
+        }else if(title == "app cache clear") {
+        	Intent intent = new Intent(mContent,AppCacheClearPageActivity.class);
+        	intent.putExtra("type",BaseActivity.TAB_TYPE_CACHE_CLEAR);
         	startActivity(intent);
         }
           

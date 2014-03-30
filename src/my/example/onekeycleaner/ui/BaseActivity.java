@@ -23,6 +23,10 @@ import android.widget.RelativeLayout;
 
 public class BaseActivity extends FragmentActivity implements  OnBarActionListener, OnClickListener{
 
+    public static final int TAB_TYPE_CACHE_CLEAR = 0;
+    public static final int TAB_TYPE_UPDATE = 1;
+    public static final int TAB_TYPE_INSTALLED = 2;
+
     /**
      * 导航bar
      */

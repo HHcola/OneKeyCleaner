@@ -4,17 +4,23 @@ import java.io.File;
 import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.List;
+import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
 
+import android.R.integer;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
+import android.os.Handler;
+import android.os.Message;
 import android.text.format.Formatter;
 import android.util.Log;
 
 import my.example.onekeycleaner.manager.AppStateManager.AppState;
+import my.example.onekeycleaner.model.CacheInfo;
 import my.example.onekeycleaner.db.operation.AppInstallSqlOp;
 import my.example.onekeycleaner.db.operation.BaseOp.OnAsyncOpListener;
+import my.example.onekeycleaner.engine.CacheInfoProvider;
 import my.example.onekeycleaner.util.AppUtils;
 import my.example.onekeycleaner.util.Constants;
 
@@ -46,10 +52,6 @@ public class AppInstallManager {
 
         mInstallApps = new ConcurrentHashMap<String, AppInstall>();
         mPackageKeyMaps = new ConcurrentHashMap<String, String>();
-
-//        mAppInstallSqlOp = new AppInstallSqlOp(mContext);
-//        mAsyncOpListener = new SQLOpListener();
-//        mAppInstallSqlOp.setAsyncOpListener(mAsyncOpListener);
         init();
     }
 
@@ -202,6 +204,8 @@ public class AppInstallManager {
         }
     }
 
+    
+    
     /**
      * 
      * @param packageName

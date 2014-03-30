@@ -22,6 +22,7 @@
     <string name="toast_network_failure">Network connection failure</string>
     <string name="str_try_best">Try our best to load the APP</string>
     <string name="tab_action_uninstall">"Uninstall"</string>
+    <string name="tab_action_clearner">"Clear"</string>
     <string name="tab_action_select_all">"Seletet All"</string>
     <string name="tab_action_unselect_all">"Unseletet All"</string>
 	<string name="str_system_app">" System app"</string>    
