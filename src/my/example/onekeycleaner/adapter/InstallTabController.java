@@ -22,6 +22,7 @@ import my.example.onekeycleaner.adapter.ListBaseAdapter.OnItemActionListener;
 import my.example.onekeycleaner.adapter.ListBaseAdapter.OnItemSelectedListener;
 import my.example.onekeycleaner.data.InstallMapList;
 import my.example.onekeycleaner.data.InstallSortableList;
+import my.example.onekeycleaner.imgcache.ImageFetcher;
 import my.example.onekeycleaner.manager.AppInstall;
 import my.example.onekeycleaner.manager.AppInstallManager;
 import my.example.onekeycleaner.manager.AppStateManager;
@@ -46,8 +47,8 @@ OnItemActionListener, OnItemSelectedListener {
     private ActionMoreContext mActionMoreContext;
 
     
-	public InstallTabController(Context context, ViewGroup root) {
-		super(context, root);
+	public InstallTabController(Context context, ViewGroup root,ImageFetcher imageFetcher) {
+		super(context, root,imageFetcher);
 		// TODO Auto-generated constructor stub
 		 mInstallListAdapter = (AppInstallListAdapter) mAdapter;
 
@@ -91,7 +92,7 @@ OnItemActionListener, OnItemSelectedListener {
 	@Override
 	public ListBaseAdapter createAdapter() {
 		// TODO Auto-generated method stub
-        return new AppInstallListAdapter(mContext, mListView,this,this);
+        return new AppInstallListAdapter(mContext, mListView,mImageFetcher,this,this);
 	}
 
 	@Override

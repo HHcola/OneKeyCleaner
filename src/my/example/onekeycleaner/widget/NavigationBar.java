@@ -83,9 +83,7 @@ public final class NavigationBar extends LinearLayout implements OnClickListener
             setBarTitle();
             setSettingTag();
         }else if (mViewStubNormal != null && showType == SHOW_BACK_BAR) {
-        	HideBarTitle();
-        	HideBarSetting();
-            mViewStubBack.inflate();
+        	mViewStubBack.inflate();
             setBackButton();
         }
     }

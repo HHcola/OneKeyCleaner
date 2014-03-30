@@ -1,5 +1,7 @@
 package my.example.onekeycleaner.adapter;
 
+import my.example.onekeycleaner.imgcache.ImageFetcher;
+
 import com.example.onekeycleaner.R;
 
 import android.content.Context;
@@ -28,9 +30,12 @@ public abstract class AppListTabController implements OnClickListener,
 
     protected ListBaseAdapter mAdapter;
     
-    public AppListTabController(Context context, ViewGroup root) {
+    protected ImageFetcher mImageFetcher;
+    
+    public AppListTabController(Context context, ViewGroup root,ImageFetcher imageFetcher) {
         mContext = context;
         mRoot = root;
+        mImageFetcher = imageFetcher;
 
         mListView = (ListView) mRoot.findViewById(R.id.list_content);
         mActionInfo = (TextView) mRoot.findViewById(R.id.action_all_info);

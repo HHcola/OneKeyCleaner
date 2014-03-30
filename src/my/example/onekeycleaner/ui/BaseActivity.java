@@ -2,6 +2,7 @@ package my.example.onekeycleaner.ui;
 
 import com.example.onekeycleaner.R;
 
+import my.example.onekeycleaner.imgcache.ImageFetcher;
 import my.example.onekeycleaner.util.Utils;
 import my.example.onekeycleaner.widget.NavigationBar;
 import my.example.onekeycleaner.widget.NavigationBar.OnBarActionListener;
@@ -30,7 +31,10 @@ public class BaseActivity extends FragmentActivity implements  OnBarActionListen
      * 添加内容view的viewgroup
      */
     private FrameLayout mFlContent;
-
+	/**
+	 * 图片下载与缓存
+	 */
+	protected ImageFetcher mImageFetcher;
     /**
      * 布局解析器
      */
@@ -60,6 +64,25 @@ public class BaseActivity extends FragmentActivity implements  OnBarActionListen
 	        setBarActionListener(this);
 	    }
 	
+		/** 
+		 * 初始化图片加载器
+		 * @param isSetLoading 
+		 * 			是否设置默认加载背景图
+		 * void
+		 */
+		protected void initImgWorker(boolean isSetLoading) {
+			mImageFetcher = new ImageFetcher(getApplicationContext());
+			if(isSetLoading) {
+				mImageFetcher.setLoadingImage(R.drawable.no_pic_default);
+			}
+
+			//flushImageFetcher();
+		}
+		
+		public ImageFetcher getImageFetcher() {
+			return mImageFetcher;
+		}
+
     /**
      * 添加content view
      * 

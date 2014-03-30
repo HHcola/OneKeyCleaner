@@ -1,5 +1,7 @@
 package my.example.onekeycleaner.adapter;
 
+import my.example.onekeycleaner.imgcache.ImageFetcher;
+
 import com.example.onekeycleaner.R;
 
 import android.content.Context;
@@ -30,13 +32,16 @@ public abstract class ListBaseAdapter extends BaseAdapter {
     protected LayoutInflater mLayoutInflater;
     protected OnItemActionListener mOnActionListener;
     protected OnItemSelectedListener mOnSelectedListener;
-    
+    protected ImageFetcher mImageFetcher;
     protected int padding;
     
-    public ListBaseAdapter(Context context, ListView listView) {
+    public ListBaseAdapter(Context context, ListView listView,ImageFetcher imageFetcher
+    		, OnItemActionListener listener) {
         mContext = context;
         mListView = listView;
         mLayoutInflater = LayoutInflater.from(context);
+        mImageFetcher = imageFetcher;
+        mOnActionListener = listener;
     }
 
     /**
@@ -111,6 +116,5 @@ public abstract class ListBaseAdapter extends BaseAdapter {
         }
         return null;
     }
-
 
 }

@@ -8,6 +8,7 @@ import java.util.HashMap;
 import com.example.onekeycleaner.R;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,6 +22,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import my.example.onekeycleaner.data.InstallMapList;
 import my.example.onekeycleaner.data.InstallSortableList;
+import my.example.onekeycleaner.imgcache.ImageFetcher;
 import my.example.onekeycleaner.manager.AppInstall;
 import my.example.onekeycleaner.manager.AppInstallManager;
 import my.example.onekeycleaner.widget.ActionMoreItemView;
@@ -33,9 +35,9 @@ public class AppInstallListAdapter extends ListBaseAdapter{
     private ArrayList<AppInstall> mAppInstallList;
     private HashMap<String, AppInstall> mSelectedAppList;
 
-	public AppInstallListAdapter(Context context, ListView listView,
+	public AppInstallListAdapter(Context context, ListView listView,ImageFetcher imageFetcher,
             OnItemActionListener listener, OnItemSelectedListener selectedListener) {
-		super(context, listView);
+		super(context, listView,imageFetcher,listener);
 		// TODO Auto-generated constructor stub
 //		mSelectedAppList = new HashMap<String, AppInstall>();
 //		mAppInstallManager = AppInstallManager.getInstance(context);
@@ -200,10 +202,10 @@ public class AppInstallListAdapter extends ListBaseAdapter{
 	                });
 	                mAppSystemHolder.setVisibility(View.GONE);
 	            }
-//
-//	            if (!TextUtils.isEmpty(install.mAppKey)) {
-//	                mImageFetcher.loadImageFromPackageManger(install.mAppKey, mAppIconHolder);
-//	            }
+
+	            if (!TextUtils.isEmpty(install.mAppKey)) {
+	                mImageFetcher.loadImageFromPackageManger(install.mAppKey, mAppIconHolder);
+	            }
 
 	            mAppNameHolder.setText(install.mAppName);
 	            mAppVersionHolder.setText(install.mVersionName);
