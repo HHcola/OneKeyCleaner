@@ -15,12 +15,15 @@ public class CacheInfo
 	public boolean mIsSystemApp;
 	public int mInstallFlag;
 	private boolean mIsActionMore = false;
+	public String mAppKey;
 	//应用大小
 	public String codeSize;
 	//数据大小
 	public String dataSize;
 	//缓存大小
 	public String cacheSize;
+	// Versiono
+	public String cacheVersion;
 	
 	public String getName()
 	{
@@ -69,6 +72,15 @@ public class CacheInfo
 	public void setCacheSize(String cacheSize)
 	{
 		this.cacheSize = cacheSize;
+	}
+	
+	public String getVersion()
+	{
+		return cacheVersion;
+	}
+	public void setVersion(String cacheVersion)
+	{
+		this.cacheVersion = cacheVersion;
 	}
 	
     /**
@@ -127,6 +139,19 @@ public class CacheInfo
     public void setInstallFlag(int installStatus) {
         mInstallFlag = installStatus;
     }
-    
+    /**
+     * @return the mAppKey
+     */
+    public String getAppKey() {
+        return mAppKey;
+    }
+
+    /**
+     * @param appKey the mAppKey to set
+     */
+    public void setAppKey(String appKey) {
+        mAppKey = appKey;
+    }
+
     
 }

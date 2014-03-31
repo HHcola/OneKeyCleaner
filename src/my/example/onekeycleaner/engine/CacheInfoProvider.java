@@ -20,6 +20,7 @@ import android.os.Handler;
 import android.os.RemoteException;
 
 import my.example.onekeycleaner.model.CacheInfo;
+import my.example.onekeycleaner.util.AppUtils;
 import my.example.onekeycleaner.util.TextFormater;
 
 
@@ -82,10 +83,14 @@ public class CacheInfoProvider
 			// 拿到应用程序的程序名
 			String name = applicationInfo.loadLabel(packageManager).toString();
 			cacheInfo.setName(name);
+			cacheInfo.setVersion(packageInfo.versionName);
 			// 拿到应用程序的图标
 			Drawable icon = applicationInfo.loadIcon(packageManager);
 			cacheInfo.setIcon(icon);
 
+	        String appKey = AppUtils.generateAppKey(packageInfo.packageName, packageInfo.versionCode);
+	        cacheInfo.setAppKey(appKey);
+	        
 			initDataSize(cacheInfo, i);
 		}
 	}
@@ -124,15 +129,16 @@ public class CacheInfoProvider
 									long codeSize = pStats.codeSize;
 									long dataSize = pStats.dataSize;
 
-									cacheInfo.setCacheSize(TextFormater
-											.dataSizeFormat(cacheSize));
-									cacheInfo.setCodeSize(TextFormater
-											.dataSizeFormat(codeSize));
-									cacheInfo.setDataSize(TextFormater
-											.dataSizeFormat(dataSize));
+									if(cacheSize > 0) {
+										cacheInfo.setCacheSize(TextFormater
+												.dataSizeFormat(cacheSize));
+										cacheInfo.setCodeSize(TextFormater
+												.dataSizeFormat(codeSize));
+										cacheInfo.setDataSize(TextFormater
+												.dataSizeFormat(dataSize));
 
-									cacheInfos.add(cacheInfo);
-
+										cacheInfos.add(cacheInfo);
+									}
 									if (position == (size - 1))
 									{
 										// 当完全获取完信息之后，发送一个成功的消息

@@ -111,6 +111,47 @@ public class AppUtils {
         context.startActivity(intent);
     }
 
+    
+    /**
+     * 调用系统UI卸载应用
+     * 
+     * @param context
+     *            Context
+     * @param packageName
+     *            APP Package Name
+     */
+    public static void clearApkCacheBySystemUI(Context context,
+            String packageName) {
+    	/** 
+    	 * Android2.3打开settings里面的那个应用的详细界面 
+    	 * 后来我又查了一个Android4.1的，也是这样写的，所有应该是2.3之后，都是这样写的了， 
+    	 * 但是这只是猜测，各位有空的可以去下载Android Settings的代码看一下 
+    	 * 这样就可以做成多个版本的适配了 
+    	 * <intent-filter>  
+    	 * <action android:name="android.settings.APPLICATION_DETAILS_SETTINGS" />  
+    	 * <category android:name="android.intent.category.DEFAULT" />  
+    	 * <data android:scheme="package" />  
+    	 * </intent-filter> 
+    	 */  
+    	  
+    	/** 
+    	 * Android2.2打开settings里面的那个应用的详细界面 
+    	 * 用这个版本来打开的话，就要加多一句把包名设置进去的 
+    	 * intent.putExtra("pkg", packageName); 
+    	 * <intent-filter>  
+    	 * <action android:name="android.intent.action.VIEW" />  
+    	 * <category android:name="android.intent.category.DEFAULT" />  
+    	 * <category android:name="android.intent.category.VOICE_LAUNCH" /> 
+    	 * </intent-filter> 
+    	 */  
+        Intent intent = new Intent();  
+        Uri packageUri = Uri.parse("package:" + packageName);
+        intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");  
+        intent.addCategory("android.intent.category.DEFAULT");  
+        intent.setData(packageUri);
+        context.startActivity(intent);
+    }
+    
     /**
      * 获取系统中已安装APP的PackageInfo，过滤自身APP和没有Launcher入口的系统APP
      * 

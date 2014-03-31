@@ -27,6 +27,7 @@ public abstract class ListBaseAdapter extends BaseAdapter {
     public static final int ITEM_ACTION_MOVE_ROM = 10;
     public static final int ITEM_ACTION_IGNORE_UPDATE = 11;
     public static final int ITEM_ACTION_CLEAR_HISTORY = 12;
+    public static final int ITEM_ACTION_CACHE_CLEAR = 13;
     protected Context mContext;
     protected ListView mListView;
     protected LayoutInflater mLayoutInflater;

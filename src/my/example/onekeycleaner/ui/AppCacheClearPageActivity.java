@@ -45,31 +45,26 @@ public class AppCacheClearPageActivity extends BaseActivity implements OnClickLi
         initImgWorker(true);
         mImageFetcher = getImageFetcher();
         setBarType(NavigationBar.SHOW_BACK_BAR);
-        setBarBackTitle("Install Manager");
+        if(mTabType == TAB_TYPE_CACHE_CLEAR) {
+            setBarBackTitle("Cache Clear");
+        }else if(mTabType == TAB_TYPE_INSTALLED) {
+            setBarBackTitle("Install Manager");
+        }
 		addContentView(mRoot);
-
         mLoadingView = mRoot.findViewById(R.id.ll_empty);
 
         mLoadingViewController = new LoadingViewController(null);
         mLoadingViewController.initLoading(mLoadingView);
 
         mLoadingViewController.startLoading();
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                mLoadingViewController.endLoading(true);
-                mController = createController(mTabType);
-            }
-        }, 400);
-        
+        mController = createController(mTabType);        
 	}
 	
 	
     private AppListTabController createController(int tabType) {
         switch (tabType) {
         case TAB_TYPE_CACHE_CLEAR:
-            return new AppCacheClearController(this, mRoot, mImageFetcher);
+            return new AppCacheClearController(this, mRoot, mImageFetcher,mLoadingViewController);
         case TAB_TYPE_UPDATE:
 //            return new UpdateTabController(getActivity(), mRoot, mImageFetcher);
         case TAB_TYPE_INSTALLED:

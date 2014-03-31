@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -139,7 +140,7 @@ public class AppInstallListAdapter extends ListBaseAdapter{
 	        public TextView mAppSizeHolder;
 	        public TextView mAppSystemHolder;
 	        public ImageView mIndicatorHolder;
-	        public ImageButton mActionButtonHolder;
+	        public Button mActionButtonHolder;
 	        public ImageButton mActionDetailHolder;
 	        public ImageButton mActionMoveHolder;
 
@@ -156,7 +157,7 @@ public class AppInstallListAdapter extends ListBaseAdapter{
 	            mAppSizeHolder = (TextView) view.findViewById(R.id.app_size);
 	            mAppSystemHolder = (TextView) view.findViewById(R.id.app_is_system);
 	            mIndicatorHolder = (ImageView) view.findViewById(R.id.action_more_indicator);
-	            mActionButtonHolder = (ImageButton) view.findViewById(R.id.action_button);
+	            mActionButtonHolder = (Button) view.findViewById(R.id.action_button);
 	            mActionMoveHolder = (ImageButton) view.findViewById(R.id.action_more_first);
 
 	            mInfoContainerHolder = view.findViewById(R.id.app_info_container);
@@ -211,8 +212,9 @@ public class AppInstallListAdapter extends ListBaseAdapter{
 	            mAppVersionHolder.setText(install.mVersionName);
 	            mAppSizeHolder.setText(install.mSizeText);
 
-	            mActionButtonHolder.setImageResource(install.isSystemApp() ?
-	                    R.drawable.btn_open_bg : R.drawable.btn_uninstall_bg);
+//	            mActionButtonHolder.setImageResource(install.isSystemApp() ?
+//	                    R.drawable.btn_open_bg : R.drawable.btn_uninstall_bg);
+	            mActionButtonHolder.setText(install.isSystemApp() ? R.string.tab_action_open : R.string.tab_action_uninstall);
 	            mActionButtonHolder.setOnClickListener(new OnClickListener() {
 	                @Override
 	                public void onClick(View v) {

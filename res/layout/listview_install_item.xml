@@ -115,14 +115,22 @@
             android:layout_width="@dimen/dimen_divider_line"
             android:layout_height="49dip"
             android:background="@drawable/dividing_line" /
-        -->
-
         <ImageButton
             android:id="@+id/action_button"
             style="@style/style_app_action_button"
             android:background="@null"
             android:contentDescription="@string/app_name"
             android:scaleType="centerInside" />
+        -->
+
+        <Button
+            android:id="@+id/action_button"
+            style="@style/style_action_button"
+            android:layout_width="92dip"
+            android:layout_height="match_parent"
+            android:background="@drawable/btn_action_all_bg"
+            android:text="Pause All" />
+
     </LinearLayout>
 
 </RelativeLayout>

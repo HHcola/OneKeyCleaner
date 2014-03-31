@@ -6,22 +6,20 @@ import java.util.HashMap;
 
 import com.example.onekeycleaner.R;
 
-import my.example.onekeycleaner.data.InstallSortableList;
 import my.example.onekeycleaner.imgcache.ImageFetcher;
-import my.example.onekeycleaner.manager.AppInstall;
-import my.example.onekeycleaner.manager.AppInstallManager;
 import my.example.onekeycleaner.model.CacheInfo;
 import my.example.onekeycleaner.widget.ActionMoreItemView;
 import android.content.Context;
+import android.graphics.Color;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -122,13 +120,10 @@ public class AppCacheClearAdapter extends ListBaseAdapter{
 	        public TextView mAppNameHolder;
 	        public TextView mAppVersionHolder;
 	        public TextView mAppSizeHolder;
+	        public TextView mAppSizeText;
 	        public TextView mAppSystemHolder;
 	        public ImageView mIndicatorHolder;
-	        public ImageButton mActionButtonHolder;
-	        public ImageButton mActionDetailHolder;
-	        public ImageButton mActionMoveHolder;
-
-	        public View mInfoContainerHolder;
+	        public Button mActionButtonHolder;
 	        public View mActionMoreHolder;
 
 	        public CacheItemViewHolder(View view) {
@@ -139,12 +134,10 @@ public class AppCacheClearAdapter extends ListBaseAdapter{
 	            mAppNameHolder = (TextView) view.findViewById(R.id.app_name);
 	            mAppVersionHolder = (TextView) view.findViewById(R.id.app_version);
 	            mAppSizeHolder = (TextView) view.findViewById(R.id.app_size);
+	            mAppSizeText  =(TextView)view.findViewById(R.id.size_text);
 	            mAppSystemHolder = (TextView) view.findViewById(R.id.app_is_system);
 	            mIndicatorHolder = (ImageView) view.findViewById(R.id.action_more_indicator);
-	            mActionButtonHolder = (ImageButton) view.findViewById(R.id.action_button);
-	            mActionMoveHolder = (ImageButton) view.findViewById(R.id.action_more_first);
-
-	            mInfoContainerHolder = view.findViewById(R.id.app_info_container);
+	            mActionButtonHolder = (Button) view.findViewById(R.id.action_button);
 	            mActionMoreHolder = view.findViewById(R.id.action_more_layout);
 
 	            ActionMoreItemView actionMoreItemView = (ActionMoreItemView) mItemView;
@@ -160,7 +153,6 @@ public class AppCacheClearAdapter extends ListBaseAdapter{
 		public void setData(final Object object, final int position) {
 			final CacheInfo installcache = (CacheInfo) object;
 
-			// 系统APP无法被卸载，CheckBox需被disabled
 			mAppCheckedHolder.setEnabled(true);
 			mAppCheckedHolder.setOnCheckedChangeListener(null);
 			mAppCheckedHolder.setChecked(installcache.isChecked());
@@ -170,8 +162,8 @@ public class AppCacheClearAdapter extends ListBaseAdapter{
 								boolean isChecked) {
 							installcache.setChecked(isChecked);
 							if (isChecked) {
-								mSelectedAppCacheList.put(installcache.packageName,
-										installcache);
+								mSelectedAppCacheList.put(
+										installcache.packageName, installcache);
 							} else {
 								mSelectedAppCacheList.remove(installcache.packageName);
 							}
@@ -182,54 +174,29 @@ public class AppCacheClearAdapter extends ListBaseAdapter{
 			mAppSystemHolder.setVisibility(View.GONE);
 
 			if (!TextUtils.isEmpty(installcache.packageName)) {
-				mImageFetcher.loadImageFromPackageManger(installcache.packageName,
+				mImageFetcher.loadImageFromPackageManger(installcache.mAppKey,
 						mAppIconHolder);
 			}
 
-			mAppNameHolder.setText(installcache.packageName);
-			mAppVersionHolder.setText(installcache.name);
+			mAppNameHolder.setText(installcache.name);
+			mAppVersionHolder.setText(installcache.cacheVersion);
+			mAppSizeText.setText(R.string.app_cache_size_text);
 			mAppSizeHolder.setText(installcache.cacheSize);
+			mAppSizeHolder.setTextSize(TypedValue.COMPLEX_UNIT_DIP,12);
+			mAppSizeHolder.setTextColor(Color.rgb(0, 0, 0));
 			
-			
-			mActionButtonHolder.setImageResource(installcache.isSystemApp() ?
-                    R.drawable.btn_open_bg : R.drawable.btn_uninstall_bg);
+            mActionMoreHolder.setVisibility(View.GONE);
+            mIndicatorHolder.setVisibility(View.GONE);
+	
+			mActionButtonHolder.setText(R.string.tab_action_clearner);
             mActionButtonHolder.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int action = installcache.isSystemApp() ?
-                            ITEM_ACTION_OPEN : ITEM_ACTION_UNINSTALL;
+                    int action = ITEM_ACTION_CACHE_CLEAR;
                     mOnActionListener.onItemAction(mItemView, position, action, installcache);
                 }
             });
 
-            if (installcache.mInstallFlag == CacheInfo.FLAG_INSTALL_AUTO_SDCARD
-                    || installcache.mInstallFlag == CacheInfo.FLAG_INSTALL_AUTO_ROM) {
-                mActionMoveHolder.setImageResource(R.drawable.btn_move_app);
-                mActionMoveHolder.setEnabled(true);
-            } else {
-                mActionMoveHolder.setImageResource(R.drawable.btn_move_app_disable);
-                mActionMoveHolder.setEnabled(false);
-            }
-            mActionMoveHolder.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (installcache.mInstallFlag == CacheInfo.FLAG_INSTALL_AUTO_SDCARD) {
-                        mOnActionListener.onItemAction(mItemView,
-                                position, ITEM_ACTION_MOVE_ROM, installcache);
-                    } else if (installcache.mInstallFlag == CacheInfo.FLAG_INSTALL_AUTO_ROM) {
-                        mOnActionListener.onItemAction(mItemView,
-                                position, ITEM_ACTION_MOVE_SDCARD, installcache);
-                    }
-                }
-            });
-
-            if (installcache.isActionMore()) {
-                mActionMoreHolder.setVisibility(View.VISIBLE);
-                mIndicatorHolder.setImageResource(R.drawable.action_more_indicator_up);
-            } else {
-                mActionMoreHolder.setVisibility(View.GONE);
-                mIndicatorHolder.setImageResource(R.drawable.action_more_indicator_down);
-            }
 		}
 	}
 

@@ -12,57 +12,43 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Handler;
 import android.os.Message;
-import android.text.TextUtils;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import my.example.onekeycleaner.adapter.AppCacheClearAdapter;
-import my.example.onekeycleaner.adapter.AppInstallListAdapter;
 import my.example.onekeycleaner.adapter.ListBaseAdapter;
 import my.example.onekeycleaner.adapter.ListBaseAdapter.OnItemActionListener;
 import my.example.onekeycleaner.adapter.ListBaseAdapter.OnItemSelectedListener;
 import my.example.onekeycleaner.data.InstallAppCacheMapList;
-import my.example.onekeycleaner.data.InstallMapList;
-import my.example.onekeycleaner.data.InstallSortableList;
 import my.example.onekeycleaner.engine.CacheInfoProvider;
 import my.example.onekeycleaner.imgcache.ImageFetcher;
 import my.example.onekeycleaner.manager.AppInstall;
-import my.example.onekeycleaner.manager.AppInstallManager;
-import my.example.onekeycleaner.manager.AppStateManager;
 import my.example.onekeycleaner.manager.AppStateManager.AppState;
 import my.example.onekeycleaner.manager.AppStateManager.AppStateChangeListener;
-import my.example.onekeycleaner.manager.AppStateManager.AppStateFilter;
 import my.example.onekeycleaner.model.CacheInfo;
+import my.example.onekeycleaner.ui.LoadingViewController;
 import my.example.onekeycleaner.util.AppUtils;
-import my.example.onekeycleaner.widget.ActionMoreItemView;
-import my.example.onekeycleaner.widget.ActionMoreItemView.AnimationListener;
 
 public class AppCacheClearController extends AppListTabController implements
 OnItemActionListener, OnItemSelectedListener{
 	private static final int LOADING = 0;
 	private static final int FINISH = 1;
 
-    private AppStateManager mAppStateManager;
     private CheckBox mActionChecked;
-    private AppCacheClearAdapter mInstallCacheListAdapter;
-    private int mTotalHeight = 0;
     private CacheInfoProvider mCachaInfoProvider;
     private InstallAppCacheMapList mCacheMap;
+    private LoadingViewController mLoadingViewController;
     
-    /** Action More 菜单上下文 */
-    private ActionMoreContext mActionMoreContext;
     
 	public AppCacheClearController(Context context, ViewGroup root,
-			ImageFetcher imageFetcher) {
+			ImageFetcher imageFetcher,LoadingViewController loadingViewController) {
 			super(context, root, imageFetcher);
 		// TODO Auto-generated constructor stub
-			mInstallCacheListAdapter = (AppCacheClearAdapter) mAdapter;
+			mLoadingViewController = loadingViewController;
 
 	        mCachaInfoProvider = new CacheInfoProvider(handler, context);
 	        mActionChecked = (CheckBox) mRoot.findViewById(R.id.action_all_checked);
@@ -70,26 +56,11 @@ OnItemActionListener, OnItemSelectedListener{
 	        mActionChecked.setOnCheckedChangeListener(mActionCheckedListener);
 	        mActionInfo.setOnClickListener(mActionInfoClickListener);
 
-	        mActionButton.setText(R.string.tab_action_clearner);
+	        mActionButton.setText(R.string.tab_action_clearner_all);
 
 	        loadData();
-	        mListView.setOnTouchListener(new OnTouchListener() {
-				@Override
-				public boolean onTouch(View v, MotionEvent event) {
-					// TODO Auto-generated method stub
-	                if (mTotalHeight > 0) {
-	                    int nowHeight = (new Float(event.getY())).intValue(); // 计算高度
-	                    if (mTotalHeight < nowHeight) {
-	                        closeActionMoreMenu();
-	                    }
-	                }
-	                return false;
-
-				}
-	        });
 	}
 	
-	//
 	private Handler handler = new Handler()
 	{
 		public void handleMessage(Message msg)
@@ -102,6 +73,7 @@ OnItemActionListener, OnItemSelectedListener{
 				case FINISH:
 					// 当加载完成之后，就调用provider里面的get方法，
 					// 这样就可以得到一个加载完成后的数据了
+					mLoadingViewController.endLoading(true);
 			        mCacheMap = new InstallAppCacheMapList(mCachaInfoProvider.getCacheInfoList());
 			        updateListViewData(true);
 			        break;
@@ -160,20 +132,11 @@ OnItemActionListener, OnItemSelectedListener{
             for (String appKey : toRemoves) {
                 selects.remove(appKey);
             }
-            initTotalHeight();
         }
 
         adapter.notifyDataSetChanged();
     }
 	
-    private void initTotalHeight() {
-        int size = mAdapter.getCount();
-        if (size > 0) {
-            View listItem = mAdapter.getView(size - 1, null, mListView);
-            listItem.measure(0, 0);
-            mTotalHeight = listItem.getMeasuredHeight() * size + 40;
-        }
-    }
     
     /**
      * 刷新当前下载数量显示，样式化显示
@@ -234,7 +197,7 @@ OnItemActionListener, OnItemSelectedListener{
         @Override
         public void onCheckedChanged(CompoundButton buttonView,
                 boolean isChecked) {
-            AppInstallListAdapter adapter = (AppInstallListAdapter) mAdapter;
+            AppCacheClearAdapter adapter = (AppCacheClearAdapter) mAdapter;
             if (isChecked) {
                 adapter.selectAll();
             } else {
@@ -253,111 +216,12 @@ OnItemActionListener, OnItemSelectedListener{
     };
     
     
-    
-    /**
-     * 使用动画打开Action More菜单
-     * 
-     * @param itemView
-     * @param install
-     */
-    private void openActionMoreMenu(final View itemView,
-            final AppInstall install) {
-
-        ActionMoreItemView actionMoreItemView = (ActionMoreItemView) itemView;
-        actionMoreItemView.openActionMoreMenu(new AnimationListener() {
-            @Override
-            public void onAnimationStart() {
-                install.setActionMore(true);
-                mActionMoreContext = new ActionMoreContext(itemView, install);
-            }
-
-            @Override
-            public void onAnimationEnd() {
-            }
-        });
-    }
-    
-    /**
-     * 使用动画关闭Action More菜单
-     * 
-     * @param itemView
-     * @param install
-     */
-    private void closeActionMoreMenu(View itemView, final AppInstall install) {
-        ActionMoreItemView actionMoreItemView = (ActionMoreItemView) itemView;
-        actionMoreItemView.closeActionMoreMenu(new AnimationListener() {
-            @Override
-            public void onAnimationStart() {
-
-            }
-
-            @Override
-            public void onAnimationEnd() {
-                install.setActionMore(false);
-            }
-        });
-    }
-
-    
-    /**
-     * 检查ActionMoreContext是否有效
-     * 
-     * @return
-     */
-    private boolean checkActionMoreContextValid() {
-        if (mActionMoreContext != null) {
-            String appKey = mActionMoreContext.data.mAppKey;
-            if (!TextUtils.isEmpty(appKey)
-                    && mCachaInfoProvider.getInstalledApp(appKey) != null) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    
-    
-    /**
-     * 使用ActionMoreContext上下文关闭Action More菜单
-     */
-    public void closeActionMoreMenu() {
-        if (checkActionMoreContextValid()) {
-            mActionMoreContext.view = mInstallCacheListAdapter.findViewWithData(
-                    mActionMoreContext.data, mActionMoreContext.view);
-            if (mActionMoreContext.view != null) {
-                closeActionMoreMenu(mActionMoreContext.view,
-                        mActionMoreContext.data);
-            } else {
-                mActionMoreContext.data.setActionMore(false);
-            }
-        }
-        mActionMoreContext = null;
-    }
-
-    
-    /**
-     * 使用ActionMoreContext上下文，不使用动画关闭Action More菜单
-     */
-    public void closeActionMoreMenuWithoutAnimation() {
-        if (checkActionMoreContextValid()) {
-            mActionMoreContext.view = mInstallCacheListAdapter.findViewWithData(
-                    mActionMoreContext.data, mActionMoreContext.view);
-            if (mActionMoreContext.view != null) {
-                View itemView = mActionMoreContext.view;
-                ActionMoreItemView actionMoreItemView = (ActionMoreItemView) itemView;
-                actionMoreItemView.closeActionMoreMenuWithoutAnimation();
-            }
-            mActionMoreContext.data.setActionMore(false);
-        }
-        mActionMoreContext = null;
-    }
-    
     @Override
     public void onTabActionClick(View tabActionView) {
-        AppInstallListAdapter adapter = (AppInstallListAdapter) mAdapter;
-        HashMap<String, AppInstall> selectedApps = adapter.getSelectedAppList();
-        for (AppInstall install : selectedApps.values()) {
-            AppUtils.uninstallApkBySystemUI(mContext, install.mPackageName);
+        AppCacheClearAdapter adapter = (AppCacheClearAdapter) mAdapter;
+        HashMap<String, CacheInfo> selectedApps = adapter.getSelectedAppList();
+        for (CacheInfo cahceinfo : selectedApps.values()) {
+            AppUtils.clearApkCacheBySystemUI(mContext, cahceinfo.packageName);
         }
     }
     
@@ -370,32 +234,13 @@ OnItemActionListener, OnItemSelectedListener{
     @Override
     public void onItemAction(View itemView, int position, int action,
             Object object) {
-        AppInstall appInstall = (AppInstall) object;
+        CacheInfo cahceinfo = (CacheInfo) object;
 
         switch (action) {
         // 按下安装按钮
-        case ListBaseAdapter.ITEM_ACTION_UNINSTALL:
-            if (!appInstall.isSystemApp()) {
-                AppUtils.uninstallApkBySystemUI(mContext,
-                        appInstall.mPackageName);
-            }
-            break;
-
-            // 按下打开按钮
-        case ListBaseAdapter.ITEM_ACTION_OPEN:
-            AppUtils.openInstalledApp(mContext, appInstall.mPackageName);
-            break;
-
-            // 按下移动到SDCARD按钮
-        case ListBaseAdapter.ITEM_ACTION_MOVE_SDCARD:
-            AppUtils.openInstalledAppDetails(mContext, appInstall.mPackageName);
-            break;
-
-            // 按下移动到SDCARD按钮
-        case ListBaseAdapter.ITEM_ACTION_MOVE_ROM:
-            AppUtils.openInstalledAppDetails(mContext, appInstall.mPackageName);
-            break;
-
+		case ListBaseAdapter.ITEM_ACTION_CACHE_CLEAR:
+			AppUtils.clearApkCacheBySystemUI(mContext, cahceinfo.packageName);
+			break;
         default:
             break;
         }
@@ -403,8 +248,7 @@ OnItemActionListener, OnItemSelectedListener{
     
     @Override
     public void onItemSelected(Object object, int count) {
-        updateTabActionInfo(count,
-        		mCachaInfoProvider.getAppCacheClearCount());
+        updateTabActionInfo(count,mCachaInfoProvider.getAppCacheClearCount());
     }
     
     /**
@@ -414,13 +258,6 @@ OnItemActionListener, OnItemSelectedListener{
 
         @Override
         public void onStateChanged(String appKey, AppState state) {
-            // 关闭被卸载的ActionMore菜单
-            if (state == AppState.UNINSTALLED && mActionMoreContext != null
-                    && appKey.equals(mActionMoreContext.data.mAppKey)) {
-                closeActionMoreMenu(mActionMoreContext.view,
-                        mActionMoreContext.data);
-            }
-
             switch (state) {
             case INSTALLED:
             case UNINSTALLED:
