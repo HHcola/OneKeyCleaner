@@ -163,6 +163,18 @@ public class CacheInfoProvider
 	{
 		this.cacheInfos = cacheInfos;
 	}
+	
+	public void removeCacheInfos(String packageName)
+	{
+    	for(int i = 0; i < cacheInfos.size(); i++) {
+    		CacheInfo cacheInfo = cacheInfos.get(i);
+            String pName = cacheInfo.getPackageName();
+            if(pName.equals(packageName)) {
+        		mCacheInfos.remove(pName);
+            }
+    	}
+	}
+	
     public void refreshCacheInfoList() {
     	initCacheInfos();
     	for(int i = 0; i < cacheInfos.size(); i++) {

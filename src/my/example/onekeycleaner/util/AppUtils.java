@@ -1,8 +1,12 @@
 package my.example.onekeycleaner.util;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+
+import my.example.onekeycleaner.controller.AppCacheClearController;
 
 import com.example.onekeycleaner.R;
 
@@ -17,6 +21,9 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
@@ -152,6 +159,40 @@ public class AppUtils {
         context.startActivity(intent);
     }
     
+    /**
+     * 获取系统root，清理缓存
+     * 
+     * @param packageName
+     *            APP Package Name
+     */
+    public static void deleteCache(final String packageName,final Handler handler){
+
+        (new Thread(){
+
+            public void run() {
+                try {              
+                    File path = new File("/data/data/"+packageName+"/cache/");
+                    if(!path.exists()){
+                        Log.i("---justyce---", "file not exist");
+                        return ;
+                    }                  
+                    String killer ="rm -r " + path.toString();
+                    Process p = Runtime.getRuntime().exec("su");
+                    DataOutputStream os =new DataOutputStream(p.getOutputStream());
+                    os.writeBytes(killer.toString() +"\n");
+                    os.writeBytes("exit\n");
+                    os.flush();
+                    Message msg = new Message();
+                    msg.what = AppCacheClearController.CLEAR_CACHE_FINISH;
+                    Bundle bundle = new Bundle();
+                    bundle.putString("packageName",packageName);
+                    msg.setData(bundle);
+                    handler.sendMessage(msg);
+                } catch (IOException e) {
+            }
+        }}).start();
+    }
+
     /**
      * 获取系统中已安装APP的PackageInfo，过滤自身APP和没有Launcher入口的系统APP
      * 

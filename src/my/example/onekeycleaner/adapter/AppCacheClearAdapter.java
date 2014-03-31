@@ -38,7 +38,7 @@ public class AppCacheClearAdapter extends ListBaseAdapter{
         mAppInstallCacheList = new ArrayList<CacheInfo>();
         mSelectedAppCacheList = new HashMap<String, CacheInfo>();
 	}
-    public void setInstallList(ArrayList<CacheInfo> appInstalls) {
+    public void setInstallCacheList(ArrayList<CacheInfo> appInstalls) {
     	mAppInstallCacheList = appInstalls;
     }
     public HashMap<String, CacheInfo> getSelectedAppList() {
@@ -162,13 +162,11 @@ public class AppCacheClearAdapter extends ListBaseAdapter{
 								boolean isChecked) {
 							installcache.setChecked(isChecked);
 							if (isChecked) {
-								mSelectedAppCacheList.put(
-										installcache.packageName, installcache);
+								mSelectedAppCacheList.put(installcache.packageName, installcache);
 							} else {
 								mSelectedAppCacheList.remove(installcache.packageName);
 							}
-							mOnSelectedListener.onItemSelected(installcache,
-									mSelectedAppCacheList.size());
+							mOnSelectedListener.onItemSelected(installcache,mSelectedAppCacheList.size());
 						}
 					});
 			mAppSystemHolder.setVisibility(View.GONE);

@@ -35,8 +35,9 @@ import my.example.onekeycleaner.util.AppUtils;
 
 public class AppCacheClearController extends AppListTabController implements
 OnItemActionListener, OnItemSelectedListener{
-	private static final int LOADING = 0;
-	private static final int FINISH = 1;
+	public static final int LOADING = 0;
+	public static final int FINISH = 1;
+	public static final int CLEAR_CACHE_FINISH = 2;
 
     private CheckBox mActionChecked;
     private CacheInfoProvider mCachaInfoProvider;
@@ -77,6 +78,12 @@ OnItemActionListener, OnItemSelectedListener{
 			        mCacheMap = new InstallAppCacheMapList(mCachaInfoProvider.getCacheInfoList());
 			        updateListViewData(true);
 			        break;
+				case CLEAR_CACHE_FINISH:
+					String packageName = msg.getData().getString("packageName");
+					mCachaInfoProvider.removeCacheInfos(packageName);
+					mCacheMap = new InstallAppCacheMapList(mCachaInfoProvider.getCacheInfoList());
+					updateListViewData(true);
+					break;
 				default:
 					break;
 			}
@@ -117,7 +124,7 @@ OnItemActionListener, OnItemSelectedListener{
 		AppCacheClearAdapter adapter = (AppCacheClearAdapter) mAdapter;
         if (refreshList) {
         	mCacheMap.refresh();
-            adapter.setInstallList(mCacheMap.getList());
+            adapter.setInstallCacheList(mCacheMap.getList());
 
             // 刷新被选中的数据
             HashMap<String, CacheInfo> selects = adapter.getSelectedAppList();
@@ -221,7 +228,8 @@ OnItemActionListener, OnItemSelectedListener{
         AppCacheClearAdapter adapter = (AppCacheClearAdapter) mAdapter;
         HashMap<String, CacheInfo> selectedApps = adapter.getSelectedAppList();
         for (CacheInfo cahceinfo : selectedApps.values()) {
-            AppUtils.clearApkCacheBySystemUI(mContext, cahceinfo.packageName);
+//            AppUtils.clearApkCacheBySystemUI(mContext, cahceinfo.packageName);
+        	  AppUtils.deleteCache(cahceinfo.packageName,handler);
         }
     }
     
@@ -239,7 +247,8 @@ OnItemActionListener, OnItemSelectedListener{
         switch (action) {
         // 按下安装按钮
 		case ListBaseAdapter.ITEM_ACTION_CACHE_CLEAR:
-			AppUtils.clearApkCacheBySystemUI(mContext, cahceinfo.packageName);
+//			AppUtils.clearApkCacheBySystemUI(mContext, cahceinfo.packageName);
+			AppUtils.deleteCache(cahceinfo.packageName,handler);
 			break;
         default:
             break;
